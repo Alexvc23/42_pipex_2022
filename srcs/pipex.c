@@ -6,64 +6,67 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 08:03:13 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/16 15:46:39 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 13:15:36 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+/* test every command before executing, if error we return null */
+char *ft_check_command(char **paths, char *cmd)
+{
+    int     i;
+    char    *new_cmd;
+    char    *tmp;
 
+    i = -1;
+    while (paths[++i])
+    {
+        tmp = ft_strjoin("/", cmd);
+        new_cmd = ft_strjoin(paths[i], tmp);
+        if (access(new_cmd, 0) == 0)
+            return (new_cmd);
+        free(tmp);
+        free(new_cmd);
+    }
+    return (NULL);
+}
+
+/* This function will be executed during the */  
 void    ft_child_process(t_var *vars, char **envp)
 {
-    int     status;
-    int     status1;
-    int     i;
     char    *cmd;
-    char    *brush;
 
-    status = dup2(vars->fd, STDIN_FILENO);
-    status1 = dup2(vars->end[1], STDOUT_FILENO);
-    if (status < 0 || status1 < 0)
-        msg_error("Error in dup2 child process\n");
+    dup2(vars->fd, STDIN_FILENO);
     close(vars->end[0]);
+    dup2(vars->end[1], STDOUT_FILENO);
     close(vars->fd);
-    i = -1;
-    while (vars->paths_muline[++i])
+    cmd = ft_check_command(vars->paths_muline, vars->cmd_args[0]);
+    if (!cmd)
     {
-        brush = ft_strjoin("/", vars->cmd_args[0]); 
-        cmd = ft_strjoin(vars->paths_muline[i], brush);
-        execve(cmd, vars->cmd_args, envp);
-        free(brush);
-        free(cmd);
+        ft_pipex_free(vars);
+        msg_error("The command doesn't exist in chield process");
     }
-    ft_unfree(vars);
-    msg_error("I didn't find any command in the child process\n");
+    execve(cmd, vars->cmd_args, envp);
 }
 
 void    ft_parent_process(t_var *vars, char **envp)
 {
-    int     status;
-    int     i;
     char    *cmd;
-    char    *brush;
+    int     status;
 
     waitpid(-1, &status, 0);
-    if (dup2(vars->fd1, STDOUT_FILENO) < 0 || dup2(vars->end[0], STDIN_FILENO) < 0) 
-        msg_error("Error in dup2 parent process\n");
+    dup2(vars->fd1, STDOUT_FILENO);
     close(vars->end[1]);
+    dup2(vars->end[0], STDIN_FILENO);
     close(vars->fd1);
-    i = -1;
-    while (vars->paths_muline[++i])
+    cmd = ft_check_command(vars->paths_muline, vars->cmd1_args[0]);
+    if (!cmd)
     {
-        brush = ft_strjoin("/", vars->cmd1_args[0]); 
-        cmd = ft_strjoin(vars->paths_muline[i], brush);
-        execve(cmd, vars->cmd1_args, envp);
-        // perror("Error executing execve in parent process\n");
-        free(brush);
-        free(cmd);
+        ft_pipex_free(vars);
+        msg_error("The command doesn't exist in parent process");
     }
-    ft_unfree(vars);
-    msg_error("I didn't find any command in the parent process\n");
+    execve(cmd, vars->cmd1_args, envp);
 }
 
 void    ft_pipex(t_var *vars, char *envp[])
@@ -94,6 +97,6 @@ int main(int argc, char *argv[], char *envp[])
 
     ft_parsing(&vars, argv, envp);
     ft_pipex(&vars, envp);
-    ft_unfree(&vars);
+    ft_pipex_free(&vars);
     return (0);
 }

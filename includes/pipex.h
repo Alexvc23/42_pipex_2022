@@ -6,20 +6,21 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:55:27 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/16 15:24:41 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:24:45 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PIPEX_H
 # define FT_PIPEX_H
-#include<unistd.h>
-#include<stdio.h>
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
-#include<sys/wait.h>
-#include "../libft/includes/libft.h"
-#include "../gnl/includes/get_next_line.h"
+# include<unistd.h>
+# include<stdio.h>
+# include<sys/types.h>
+# include<sys/stat.h>
+# include<fcntl.h>
+# include<sys/wait.h>
+# include "../libft/includes/libft.h"
+# include "../gnl/includes/get_next_line.h"
+# define ERR_CMD "The command doesn't exist"
 
 // ─── STRUCS ────────────────────────────────────────────────────────────────
     
@@ -37,7 +38,7 @@ typedef struct  s_var
 
 // ─── FUCTIONS ──────────────────────────────────────────────────────────────
 
-void    ft_unfree(t_var *vars);
+void    ft_pipex_free(t_var *vars);
 void	msg_error(char *err);
 char	*find_path(char **envp);
 void    ft_parsing(t_var *vars, char *argv[], char **envp);

@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:17:58 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/16 15:35:54 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:21:37 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*find_path(char **envp)
 	return (*envp + 5);
 }
 
-void ft_unfree(t_var *vars)
+void ft_pipex_free(t_var *vars)
 {
     ft_free(vars->cmd1_args);
     ft_free(vars->cmd_args);

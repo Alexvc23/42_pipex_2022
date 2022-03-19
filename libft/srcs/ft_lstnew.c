@@ -6,7 +6,7 @@
 /*   By: jvalenci <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 11:01:16 by alex-ubun         #+#    #+#             */
-/*   Updated: 2021/11/23 11:34:19 by jvalenci         ###   ########lyon.fr   */
+/*   Updated: 2022/03/19 15:22:49 by jvalenci         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	new->content = content;
 	new->next = NULL;
-   new->previous = NULL;
-   new->index = NULL;
+	new->previous = NULL;
+	new->index = NULL;
 	return (new);
 }
 /* 

@@ -6,12 +6,12 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:55:27 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 14:03:38 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 15:01:59 by jvalenci         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PIPEX_H
-# define FT_PIPEX_H
+#ifndef PIPEX_H
+# define PIPEX_H
 # include<unistd.h>
 # include<stdio.h>
 # include<sys/types.h>
@@ -23,27 +23,27 @@
 # define ERR_CMD "The command doesn't exist"
 
 // ─── STRUCS ────────────────────────────────────────────────────────────────
-    
-typedef struct  s_var 
+
+typedef struct s_var
 {
-    char    *path_line; //str with the path towars all the bash commands folders
-    char    **paths_muline; // array with each commands folder by row
-    char    **cmd_args; // commands passed as arguments to our program after calling ft_split over argv[2 || 4] 
-    char    **cmd1_args; // commands passed as arguments to our program after calling ft_split over argv[2 || 4] 
-    char    **envp; // all the environment variables separated by row after calling gnl over fd_envp
-    int     fd;
-    int     fd1;
-    int     end[2];
-}               t_var;
+	char	*path_line;
+	char	**paths_muline;
+	char	**cmd_args;
+	char	**cmd1_args;
+	char	**envp;
+	int		fd;
+	int		fd1;
+	int		end[2];
+}	t_var;
 
 // ─── FUCTIONS ──────────────────────────────────────────────────────────────
 
-void    ft_pipex_free(t_var *vars);
+void	ft_pipex_free(t_var *vars);
 void	msg_error(char *err);
 char	*find_path(char **envp);
-int     ft_parsing(t_var *vars, char *argv[], char **envp);
-void    ft_child_process(t_var *vars, char **envp);
-void    ft_parent_process(t_var *vars, char **envp);
-void    ft_pipex(t_var *vars, char *envp[]);
+int		ft_parsing(t_var *vars, char *argv[], char **envp);
+void	ft_child_process(t_var *vars, char **envp);
+void	ft_parent_process(t_var *vars, char **envp);
+void	ft_pipex(t_var *vars, char *envp[]);
 
-# endif
+#endif

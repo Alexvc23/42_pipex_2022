@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 13:04:52 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/02/16 11:30:21 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 15:19:49 by jvalenci         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int ft_int_overflow(int xvalue, int yvalue, char operation)
+int	ft_int_overflow(int xvalue, int yvalue, char operation)
 {
-	int over_flow;
+	int	over_flow;
 
-    if (operation == 'a')
-        over_flow = xvalue + yvalue;
-    if (operation == 'm')
-        over_flow = xvalue * yvalue;
-    if (xvalue > 0 && yvalue > 0 && over_flow < 0)
-        return (0);
-    if (xvalue < 0 && yvalue < 0 && over_flow > 0)
-        return (0);
-    return (1);
+	if (operation == 'a')
+		over_flow = xvalue + yvalue;
+	if (operation == 'm')
+		over_flow = xvalue * yvalue;
+	if (xvalue > 0 && yvalue > 0 && over_flow < 0)
+		return (0);
+	if (xvalue < 0 && yvalue < 0 && over_flow > 0)
+		return (0);
+	return (1);
 }
 
-int ft_check_sign(int *mul, int *sym, int *i, const char *str)
+int	ft_check_sign(int *mul, int *sym, int *i, const char *str)
 {
 	while (str[*i] == '+' || str[*i] == '-')
 	{
@@ -77,44 +77,44 @@ int	ft_atoi(const char *str)
 	return (num * mul);
 }
 /* int main()
-{
-	printf(("ft_atoi test\n"));
-	printf(("test1: "));
-	printf(("\\t\\v\\f' '' '+234234234\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("\t\v\f  +234234234"));
-	printf(("------------------------------\n"));
-	printf(("test2: "));
-	printf(("lkfjsldkf34234234\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("lkfjsldkf34234234"));
-	printf(("------------------------------\n"));
-	printf(("test3: "));
-	printf(("2147483648\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("2147483648"));
-	printf(("------------------------------\n"));
-	printf(("test4: "));
-	printf(("-2147483649\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("-2147483649"));
-	printf(("------------------------------\n"));
-	printf(("test5: "));
-	printf(("-\\t\\r\\f214748364\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("-\t\r\f214748364"));
-	printf(("------------------------------\n"));
-	printf(("test6: "));
-	printf(("-2147483\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("-2147483"));
-	printf(("------------------------------\n"));
-	printf(("test7: "));
-	printf(("-2147483\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("-2147483"));
-	printf(("test8: "));
-	printf(("-2147483648\n"));
-	printf(("function call: "));
-	printf(("%d\n"), ft_atoi("-2147483648"));
-} */
+   {
+   printf(("ft_atoi test\n"));
+   printf(("test1: "));
+   printf(("\\t\\v\\f' '' '+234234234\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("\t\v\f  +234234234"));
+   printf(("------------------------------\n"));
+   printf(("test2: "));
+   printf(("lkfjsldkf34234234\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("lkfjsldkf34234234"));
+   printf(("------------------------------\n"));
+   printf(("test3: "));
+   printf(("2147483648\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("2147483648"));
+   printf(("------------------------------\n"));
+   printf(("test4: "));
+   printf(("-2147483649\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("-2147483649"));
+   printf(("------------------------------\n"));
+   printf(("test5: "));
+   printf(("-\\t\\r\\f214748364\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("-\t\r\f214748364"));
+   printf(("------------------------------\n"));
+   printf(("test6: "));
+   printf(("-2147483\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("-2147483"));
+   printf(("------------------------------\n"));
+   printf(("test7: "));
+   printf(("-2147483\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("-2147483"));
+   printf(("test8: "));
+   printf(("-2147483648\n"));
+   printf(("function call: "));
+   printf(("%d\n"), ft_atoi("-2147483648"));
+   } */

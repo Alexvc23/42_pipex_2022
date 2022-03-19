@@ -6,21 +6,20 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:59:54 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/02/11 15:04:07 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 15:20:34 by jvalenci         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void    ft_check_prev(t_list **alst)
+void	ft_check_prev(t_list **alst)
 {
-    t_list *temp;
+	t_list	*temp;
 
-    temp = *alst;
-    while (temp->next)
-    {
-        temp->next->previous = temp;
-        temp = temp->next;
-    }
+	temp = *alst;
+	while (temp->next)
+	{
+		temp->next->previous = temp;
+		temp = temp->next;
+	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 08:03:13 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 13:15:36 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:04:57 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ char *ft_check_command(char **paths, char *cmd)
     return (NULL);
 }
 
-/* This function will be executed during the */  
+/* execution during the first process (the child process) containing 
+   cmd1 passed, defining fd1 as stdin for cmd1, and setting up our stdout 
+   that will stdin for cmd2 */
 void    ft_child_process(t_var *vars, char **envp)
 {
     char    *cmd;
@@ -50,6 +52,8 @@ void    ft_child_process(t_var *vars, char **envp)
     execve(cmd, vars->cmd_args, envp);
 }
 
+/* Second process execution containing cmd2, setting output file as cmd2's output 
+ and cmd1's output as cmd2's input*/ 
 void    ft_parent_process(t_var *vars, char **envp)
 {
     char    *cmd;
@@ -94,8 +98,8 @@ int main(int argc, char *argv[], char *envp[])
     
     if (vars.fd < 0 || vars.fd1 < 0)
         msg_error("There was a problem reading the files\n");
-
-    ft_parsing(&vars, argv, envp);
+    if(!ft_parsing(&vars, argv, envp))
+        msg_error("There was problem reading the arguments\n");
     ft_pipex(&vars, envp);
     ft_pipex_free(&vars);
     return (0);

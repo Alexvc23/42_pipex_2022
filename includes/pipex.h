@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:55:27 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/18 16:24:45 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:03:38 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct  s_var
 void    ft_pipex_free(t_var *vars);
 void	msg_error(char *err);
 char	*find_path(char **envp);
-void    ft_parsing(t_var *vars, char *argv[], char **envp);
+int     ft_parsing(t_var *vars, char *argv[], char **envp);
 void    ft_child_process(t_var *vars, char **envp);
 void    ft_parent_process(t_var *vars, char **envp);
 void    ft_pipex(t_var *vars, char *envp[]);

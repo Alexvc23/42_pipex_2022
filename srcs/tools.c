@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:17:58 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 14:24:24 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:40:40 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ void	msg_error(char *err)
 char	*find_path(char **envp)
 {
     while (ft_strncmp("PATH", *envp, 4))
+    {
         envp++;
-    if (*envp == NULL)
-        return (NULL);
+        if (!*envp)
+            return (NULL);
+    }
     return (*envp + 5);
 }
 
@@ -41,5 +43,6 @@ int   ft_parsing(t_var *vars, char *argv[], char **envp)
         return (0);
     vars->paths_muline = ft_split(vars->path_line, ':');
     vars->cmd_args = ft_split(argv[2],' ');
+    vars->cmd1_args = ft_split(argv[3],' ');
     return (1);
 }

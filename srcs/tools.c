@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:17:58 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 14:03:09 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:19:28 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ char	*find_path(char **envp)
 {
     while (ft_strncmp("PATH", *envp, 4))
         envp++;
-    if (ft_strncmp("PATH", *envp, 4) == 0)
-        return (*envp + 5);
-    else
+    if (*envp == NULL)
         return (NULL);
+    return (*envp + 5);
 }
 
 void ft_pipex_free(t_var *vars)

@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:17:58 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 14:19:28 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/19 14:24:24 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ void ft_pipex_free(t_var *vars)
 int   ft_parsing(t_var *vars, char *argv[], char **envp)
 {
     vars->path_line = find_path(envp);
+    if (!vars->path_line)
+        return (0);
     vars->paths_muline = ft_split(vars->path_line, ':');
     vars->cmd_args = ft_split(argv[2],' ');
-    vars->cmd1_args = ft_split(argv[3],' ');
-    if (!vars->path_line || !vars->paths_muline || !vars->cmd1_args \
-    || !vars->cmd_args)
-        return (0);
     return (1);
 }

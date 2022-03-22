@@ -1,5 +1,3 @@
-# 42_pipex_2022
-
 Pipes is a project that reproduces the behavior of the shell pipe | command in C, using the following functions: ***pipe()***, ***fork()***, ***dup2***, access, and ***execve()*** functions. The program will lunch as ***./pipex infile cmd1 cmd2 outfile*** its behavior will be exactly as the following line in shell ***< infile cmd1 | cmd 2 > out file.***
 
 # General idea
@@ -54,15 +52,15 @@ On success, return a new file descriptor. On error, -1 is returned.
 
 ### Before
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d1afbf69-93a8-4301-bd9f-340a2d10988e/Untitled.png)
+![image](https://user-images.githubusercontent.com/53409722/159450342-9eb86431-c1e0-4f67-b73d-c30849d2ebdd.png)
 
 ### Execution
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/80cc1319-1280-4b59-9c8c-46cf9b7b49c6/Untitled.png)
+![image](https://user-images.githubusercontent.com/53409722/159450399-b6676241-9fb3-4bab-85f3-a1a2e5fe610c.png)
 
 ### After
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/29ff508b-f817-4189-952e-daf0c6b682ba/Untitled.png)
+![image](https://user-images.githubusercontent.com/53409722/159450486-1ff505f5-d104-4d31-83ab-76b92fc9419d.png)
 
 ---
 
@@ -74,7 +72,7 @@ On success, return a new file descriptor. On error, -1 is returned.
        int execve(const char *pathname, char *const argv[], char *const envp[]);
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/613a1747-a862-4b32-a22a-7833b614b306/Untitled.png)
+![image](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/613a1747-a862-4b32-a22a-7833b614b306/Untitled.png)
 
 execve function will have to try every single path up until it finds the correct one
 

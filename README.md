@@ -1,3 +1,4 @@
+# pipex 42_lyon_France_project
 Pipes is a project that reproduces the behavior of the shell pipe | command in C, using the following functions: ***pipe()***, ***fork()***, ***dup2***, access, and ***execve()*** functions. The program will lunch as ***./pipex infile cmd1 cmd2 outfile*** its behavior will be exactly as the following line in shell ***< infile cmd1 | cmd 2 > out file.***
 
 # General idea

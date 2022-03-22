@@ -72,7 +72,7 @@ On success, return a new file descriptor. On error, -1 is returned.
        int execve(const char *pathname, char *const argv[], char *const envp[]);
 ```
 
-![image](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/613a1747-a862-4b32-a22a-7833b614b306/Untitled.png)
+![image](https://user-images.githubusercontent.com/53409722/159450912-3963c697-9b51-46ec-b757-0231304e572c.png)
 
 execve function will have to try every single path up until it finds the correct one
 

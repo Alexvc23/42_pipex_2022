@@ -6,7 +6,7 @@ With the help of **pipe()** and **dup2()** we set a bridge between file descript
 
 The parent will represent the cmd2, and the child will represent cmd1. As both processes will try to execute simultaneously, we need to use a **waitpid()** or **wait()** to tell our program that we want to execute the children processes firstly, so cmd1 will execute with their input and output configuration, once finished. cmd2 starts its execution taking as input the output of cmd1 and as output outfile 
 
-# Function’s explanation
+# Functions explanation
 
 - **pipe()**
 
@@ -129,3 +129,7 @@ R_OK, W_OK, and X_OK test whether the file exists and grants read, write,  and  
 Return
 
 On success (all requested permission granted, and the file exists), zero is retuned. On error -1 is returned.
+
+# This project was base on:
+
+[https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901](https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901)

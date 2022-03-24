@@ -45,7 +45,7 @@ END		=	\033[0m
 
 # ─── RULES ──────────────────────────────────────────────────────────
 	
-all: $(EXEC)
+all: $(EXEC) libft gnl
 	$(AT) chmod 777 $<
 
 $(EXEC): $(LIBFT) $(GNL) $(OBJS) $(INCS)
@@ -59,13 +59,14 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c Makefile $(INCS) | $(DIR_OBJS)
 $(DIR_OBJS):
 	$(AT) mkdir -p $@ 
 
-$(LIBFT): $(DIR_LIBFT)/Makefile $(DIR_LIBFT)/srcs/* $(DIR_LIBFT)/includes/libft.h
-	 $(AT) $(MAKE) -C $(DIR_LIBFT)
+$(LIBFT): libft 
+$(GNL): gnl 
 
-$(GNL): $(DIR_GNL)/Makefile $(DIR_GNL)/srcs/* $(DIR_GNL)/includes/get_next_line.h
-	 $(AT) $(MAKE) -C $(DIR_GNL)
+gnl:
+	$(AT) $(MAKE) -C $(DIR_GNL)
+libft:
+	$(AT) $(MAKE) -C $(DIR_LIBFT)
 
-	
 clean:
 	@echo Removing object files
 	$(AT) $(MAKE) -C $(DIR_LIBFT) clean
@@ -80,5 +81,5 @@ fclean: clean
 
 re: fclean all	
 
-.PHONY: all clean fclean
+.PHONY: all clean fclean gnl libft
 .DEFAULT: all

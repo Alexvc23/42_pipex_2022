@@ -102,7 +102,7 @@ $(LIBRARY): $(OBJS) $(SRCS)
 	$(AT)-ranlib $(LIBRARY)
 	@printf "$(ERASE)$(ERASE)$(BLUE)> Creating:$(BOLD)$(CYAN) $@ $(END)\n"
 
-$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile $(DIR_OBJS)
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_OBJS)
 	$(AT) $(CC) $(FLAGS) -I $(DIR_INCS) -c $< -o $@
 	@printf "$(ERASE)$(ERASE)$(BLUE)> Creating: $(RED) $@ $(END)\n"
 

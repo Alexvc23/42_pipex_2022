@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:29:17 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/16 14:13:47 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:42:29 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_new_word(char *s, char charset, int index, char **arr)
 	new_str = malloc((len + 1) * sizeof(char));
 	if (!new_str)
 	{
-		ft_free(arr);
+		ft_free((void**)arr);
 		return (NULL);
 	}
 	i = index;

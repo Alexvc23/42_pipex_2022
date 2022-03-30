@@ -32,7 +32,7 @@ $(LIBRARY): $(OBJS)
 	$(AT)-ar -rcs $(LIBRARY) $(OBJS) $(INCS)
 	$(AT)-ranlib $(LIBRARY)
 
-$(OBJS): $(SRCS) $(INCS) Makefile $(DIR_OBJS)
+$(OBJS): $(SRCS) $(INCS) Makefile | $(DIR_OBJS)
 	$(V_CC) -I$(DIR_INCS) -c $(FLAGS) $< -o $@
 
 $(DIR_OBJS):

@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:55:06 by jvalenci          #+#    #+#             */
-/*   Updated: 2021/12/13 11:59:03 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:36:00 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_buffer
 
 /* FONCTION PROTOYPES */
 
-char	*get_next_line(int fd);
+int	get_next_line(int fd, char *str);
 size_t	ft_strlen(const char *s);
 
 #endif

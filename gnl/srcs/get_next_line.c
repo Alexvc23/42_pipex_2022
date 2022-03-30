@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:54:51 by jvalenci          #+#    #+#             */
-/*   Updated: 2021/12/13 11:42:15 by jvalenci         ###   ########lyon.fr   */
+/*   Updated: 2022/03/28 18:37:07 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,12 @@ int	ft_fetch_next_l(int fd, char **new_str, t_buffer *t_buf)
 	return (GNL_NO_NEW_LINE);
 }
 
-char	*get_next_line(int fd)
+int	get_next_line(int fd, char *str)
 {
-	char			*new_str;
 	int				result;
 	static t_buffer	t_buf[FD_SETSIZE];
 
-	new_str = 0;
+	str = 0;
 	if (fd < 0 || fd > FD_SETSIZE)
 		return (GNL_ERROR);
 	if (t_buf[fd].data == 0)
@@ -104,8 +103,11 @@ char	*get_next_line(int fd)
 	}
 	result = GNL_NO_NEW_LINE;
 	while (result == GNL_NO_NEW_LINE)
-		result = ft_fetch_next_l(fd, &new_str, &t_buf[fd]);
+		result = ft_fetch_next_l(fd, &str, &t_buf[fd]);
 	if (result == GNL_EOF || result == GNL_ERROR)
+	{
 		ft_free(&t_buf[fd].data);
-	return (new_str);
+		return (-1);
+	}
+	return (0);
 }

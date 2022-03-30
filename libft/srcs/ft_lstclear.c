@@ -6,15 +6,15 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:30:36 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 15:22:03 by jvalenci         ###   ########lyon.fr   */
+/*   Updated: 2022/03/26 15:24:04 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	del(void *content)
+void	del(void **content)
 {
-	free(content);
+	ft_free(content);
 	return ;
 }
 

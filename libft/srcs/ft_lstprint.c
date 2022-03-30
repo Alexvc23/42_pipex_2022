@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:03:09 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 15:24:15 by jvalenci         ###   ########lyon.fr   */
+/*   Updated: 2022/03/27 10:02:05 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 void	ft_lstprint(t_list **header)
 {
 	t_list	*ptr;
+   int      i;
 
 	ptr = *header;
 	if (!*header)
 		return ;
-	while (ptr)
-	{
-		ft_putnbr_fd(*((int *)ptr->content), 1);
-		ptr = ptr->next;
-		if (ptr)
-			ft_putchar_fd(' ', 1);
-	}
-	ft_putstr_fd("\n", 1);
+   while (ptr)
+   {
+      i = 0;
+      while (ptr->content[i])
+         ft_putstr_fd(ptr->content[i++], 1);
+      if (ptr->next)
+         ft_putchar_fd(' ', 1);
+      ft_putnbr_fd(*(int*)ptr->index, 1);
+      ptr = ptr->next;
+   }
+   ft_putstr_fd("\n", 1);
 }
 /* int main(int args, char *argv[])
    {

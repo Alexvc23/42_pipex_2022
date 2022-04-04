@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 08:03:13 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/04/03 20:35:57 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:12:54 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_child_process(t_var *vars, char **envp)
 	if (!cmd)
 	{
 		ft_pipex_free(vars);
-		msg_error("The command doesn't exist in chield process");
+		msg_error("The command doesn't exist in child process");
 	}
 	execve(cmd, vars->cmd_args, envp);
 }

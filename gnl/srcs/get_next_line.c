@@ -6,11 +6,22 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:54:51 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/04/01 13:51:07 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:20:51 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
+
+int	ft_free_gnl(char **buffer)
+{
+	if (*buffer)
+	{
+		free(*buffer);
+		*buffer = NULL;
+		buffer = NULL;
+	}
+	return (-1);
+}
 
 void	ft_count_nl(t_buffer *t_buf)
 {
@@ -67,7 +78,7 @@ int	ft_fetch_next_l(int fd, char **new_str, t_buffer *t_buf)
 	t_buf->start = t_buf->next_l;
 	if (!reassigned_str)
 		return (GNL_ERROR);
-	ft_free((void**)new_str);
+	ft_free_gnl(new_str);
 	*new_str = reassigned_str;
 	if (t_buf->next_l < t_buf->end || t_buf->data[t_buf->next_l - 1] == '\n')
 		return (GNL_NEW_LINE);
@@ -76,12 +87,12 @@ int	ft_fetch_next_l(int fd, char **new_str, t_buffer *t_buf)
 	return (GNL_NO_NEW_LINE);
 }
 
-int	get_next_line(int fd, char *str)
+int get_next_line(int fd, char **new_str)
 {
 	int				result;
 	static t_buffer	t_buf[FD_SETSIZE];
 
-	str = 0;
+	*new_str = 0;
 	if (fd < 0 || fd > FD_SETSIZE)
 		return (GNL_ERROR);
 	if (t_buf[fd].data == 0)
@@ -93,11 +104,8 @@ int	get_next_line(int fd, char *str)
 	}
 	result = GNL_NO_NEW_LINE;
 	while (result == GNL_NO_NEW_LINE)
-		result = ft_fetch_next_l(fd, &str, &t_buf[fd]);
+		result = ft_fetch_next_l(fd, new_str, &t_buf[fd]);
 	if (result == GNL_EOF || result == GNL_ERROR)
-	{
-		ft_free((void**)t_buf[fd].data);
-		return (-1);
-	}
+		return (ft_free_gnl(&t_buf[fd].data));
 	return (0);
 }

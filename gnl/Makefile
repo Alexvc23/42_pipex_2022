@@ -14,34 +14,47 @@ FLAGS	= -Wall -Werror -Wextra -D BUFFER_SIZE=100
 DIR_SRCS = srcs
 DIR_OBJS = objs
 DIR_INCS = includes
-DIR_LIBFT := ../libft
 O_FILES = $(C_FILES:.c=.o)
 
 SRCS = $(addprefix $(DIR_SRCS)/,$(C_FILES))
 OBJS = $(addprefix $(DIR_OBJS)/,$(O_FILES))
 INCS = $(addprefix $(DIR_INCS)/,$(INCLUDES))
-LIBFT := $(DIR_LIBFT)/libft.a
-
 
 C_FILES = get_next_line.c tools.c
 
 INCLUDES := get_next_line.h
 
-all: $(LIBRARY)
+# ─── COLORS ────────────────────────────────────────────────────────
+	
+ERASE	=	\033[2K\r
+GREY	=	\033[30m
+RED		=	\033[31m
+GREEN	=	\033[32m
+YELLOW	=	\033[33m
+BLUE	=	\033[34m
+PINK	=	\033[35m
+CYAN	=	\033[36m
+WHITE	=	\033[37m
+BOLD	=	\033[1m
+UNDER	=	\033[4m
+SUR		=	\033[7m
+END		=	\033[0m
 
-$(LIBRARY): $(OBJS) $(LIBFT)
-	@echo creating library	
+# ─── RULES ──────────────────────────────────────────────────────────
+
+all: $(LIBRARY) 
+
+$(LIBRARY): $(OBJS)
 	$(AT)-ar -rcs $(LIBRARY) $(OBJS) $(INCS)
 	$(AT)-ranlib $(LIBRARY)
+	@printf "$(ERASE)$(ERASE)$(BLUE)> Creating:$(BOLD)$(CYAN) $@ $(END)\n"
 
 $(OBJS): $(SRCS) $(INCS) Makefile | $(DIR_OBJS)
-	$(V_CC) -I$(DIR_INCS) -c $(FLAGS) $< -o $@
+	$(AT) $(CC) -I$(DIR_INCS) -c $(FLAGS) $< -o $@
+	@printf "$(ERASE)$(ERASE)$(BLUE)> Creating:$(RED) $@ $(END)\n"
 
 $(DIR_OBJS):
 	$(AT)-mkdir -p $@ 
-
-$(LIBFT):
-	$(MAKE) -C $(DIR_LIBFT)
 	
 clean:
 	@echo Removing object files

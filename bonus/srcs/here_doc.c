@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:39:11 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/04/01 12:30:52 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:50:44 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ void	ft_here_doc(char *arg, t_vars *vars)
 	char	*buf;
 
 	buf = NULL;
-	file = open(".tmp_here_doc", O_CREAT || O_TRUNC, 00644);
+	file = open(".tmp_here_doc", O_CREAT |O_RDWR | O_TRUNC, 00666);
 	if (file < 0)
 		ft_msg_error("Error creating here_doc\n");
 	while (1)
 	{
 		write(1, "> ", 2);
-		get_next_line(0, buf);
-		if (ft_strncmp(buf, arg, ft_strlen(buf)))
+		get_next_line(0, &buf);
+		if (!ft_strncmp(buf, arg, ft_strlen(buf)))
 			break ;
-		write(file, buf, ft_strlen(buf));
+		write(file, buf, ft_strlen(buf)+1);
 		free(buf);
 	}
 	free(buf);

@@ -6,16 +6,16 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:17:58 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 14:57:33 by jvalenci         ###   ########lyon.fr   */
+/*   Updated: 2022/04/03 20:38:13 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pipex.h"
+#include "pipex.h"
 
 void	msg_error(char *err)
 {
 	perror(err);
-	exit (1);
+	exit(1);
 }
 
 char	*find_path(char **envp)
@@ -31,9 +31,9 @@ char	*find_path(char **envp)
 
 void	ft_pipex_free(t_var *vars)
 {
-	ft_free(vars->cmd1_args);
-	ft_free(vars->cmd_args);
-	ft_free(vars->paths_muline);
+	ft_free((void **)vars->cmd1_args);
+	ft_free((void **)vars->cmd_args);
+	ft_free((void **)vars->paths_muline);
 }
 
 int	ft_parsing(t_var *vars, char *argv[], char **envp)

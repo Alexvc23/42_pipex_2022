@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 08:03:13 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/19 14:56:07 by jvalenci         ###   ########lyon.fr   */
+/*   Updated: 2022/04/03 20:35:57 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ char	*ft_check_command(char **paths, char *cmd)
 	return (NULL);
 }
 
-/* execution during the first process (the child process) containing 
-   cmd1 passed, defining fd1 as stdin for cmd1, and setting up our stdout 
+/* execution during the first process (the child process) containing
+   cmd1 passed, defining fd1 as stdin for cmd1, and setting up our stdout
    that will stdin for cmd2 */
 void	ft_child_process(t_var *vars, char **envp)
 {
 	char	*cmd;
 
 	dup2(vars->fd, STDIN_FILENO);
-	close(vars->end[0]);
 	dup2(vars->end[1], STDOUT_FILENO);
 	close(vars->fd);
+	close(vars->end[0]);
+	close(vars->end[1]);
 	cmd = ft_check_command(vars->paths_muline, vars->cmd_args[0]);
 	if (!cmd)
 	{
@@ -53,7 +54,7 @@ void	ft_child_process(t_var *vars, char **envp)
 }
 
 /* Second process execution containing cmd2, setting output file as cmd2'
-  soutput and cmd1's output as cmd2's input*/
+   soutput and cmd1's output as cmd2's input*/
 void	ft_parent_process(t_var *vars, char **envp)
 {
 	char	*cmd;
@@ -61,8 +62,9 @@ void	ft_parent_process(t_var *vars, char **envp)
 
 	waitpid(-1, &status, 0);
 	dup2(vars->fd1, STDOUT_FILENO);
-	close(vars->end[1]);
 	dup2(vars->end[0], STDIN_FILENO);
+	close(vars->end[1]);
+	close(vars->end[0]);
 	close(vars->fd1);
 	cmd = ft_check_command(vars->paths_muline, vars->cmd1_args[0]);
 	if (!cmd)

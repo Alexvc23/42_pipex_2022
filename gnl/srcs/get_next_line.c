@@ -6,21 +6,11 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:54:51 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/28 18:37:07 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:51:07 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
-
-void	ft_free(char **buffer)
-{
-	if (*buffer)
-	{
-		free(*buffer);
-		*buffer = NULL;
-		buffer = NULL;
-	}
-}
 
 void	ft_count_nl(t_buffer *t_buf)
 {
@@ -77,7 +67,7 @@ int	ft_fetch_next_l(int fd, char **new_str, t_buffer *t_buf)
 	t_buf->start = t_buf->next_l;
 	if (!reassigned_str)
 		return (GNL_ERROR);
-	ft_free(new_str);
+	ft_free((void**)new_str);
 	*new_str = reassigned_str;
 	if (t_buf->next_l < t_buf->end || t_buf->data[t_buf->next_l - 1] == '\n')
 		return (GNL_NEW_LINE);
@@ -106,7 +96,7 @@ int	get_next_line(int fd, char *str)
 		result = ft_fetch_next_l(fd, &str, &t_buf[fd]);
 	if (result == GNL_EOF || result == GNL_ERROR)
 	{
-		ft_free(&t_buf[fd].data);
+		ft_free((void**)t_buf[fd].data);
 		return (-1);
 	}
 	return (0);

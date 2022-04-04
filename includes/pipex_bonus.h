@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bunus.h                                      :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:11:38 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/03/30 09:26:32 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:53:48 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_BONUS_H
-#define PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 /* to write, read, close, access, pipe, dup, dup2, execve, fork */
 # include <unistd.h>
@@ -34,37 +34,42 @@
 # include <stdio.h>
 
 /* gnl */
-#include"../gnl/includes/get_next_line.h"
+# include"../gnl/includes/get_next_line.h"
 
 /* libft */
-#include"../libft/includes/get_next_line.h"
+# include"../libft/includes/libft.h"
 
 // ─── STRUCTURE ────────────────────────────────────────────────────────────
-    
-typedef struct	s_vars 
+
+typedef struct s_vars
 {
 	char	*path;
 	char	**paths;
 	char	**cmd_args;
+	char	*cmd;
 	int		infile;
 	int		outfile;
-	int		*pipes;
+	int		*end;
 	int		here_doc;
 	int		iter;
-    int     n_cmds;     
-    int     n_pipes;
-
+	int		n_cmds;
+	int		n_pipes;
+	pid_t	id;
 }				t_vars;
 
 // ─── FUNCTIONS ──────────────────────────────────────────────────────────────
 
 int		ft_check_arg(int argc, char **argv, t_vars *pipex);
-void	msg_error(char *err);
+void	ft_msg_error(char *err);
 char	*ft_find_path(char **envp);
-void    ft_here_doc(char *arg, t_vars *vars);
-void	ft_get_infile(t_vars *vars, char **argv)
-void	ft_get_oufile(char *argv, t_vars *pipex);
-void    ft_free_error(t_vars *pipex);
-void    ft_free_pipex(t_vars *pipex);
-    
+void	ft_here_doc(char *arg, t_vars *vars);
+void	ft_get_infile(t_vars *vars, char **argv);
+void	ft_get_outfile(char *argv, t_vars *pipex);
+void	ft_close_files(t_vars *pipex);
+void	ft_free_pipex(t_vars *pipex);
+char	*ft_get_command(char **paths, char *cmd);
+void	ft_child_bonus(t_vars *pipex, char **argv);
+void	ft_close_pipes(t_vars *p);
+void	ft_create_pipes(t_vars *p);
+
 #endif

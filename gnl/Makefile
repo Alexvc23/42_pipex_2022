@@ -14,20 +14,22 @@ FLAGS	= -Wall -Werror -Wextra -D BUFFER_SIZE=100
 DIR_SRCS = srcs
 DIR_OBJS = objs
 DIR_INCS = includes
+DIR_LIBFT := ../libft
 O_FILES = $(C_FILES:.c=.o)
 
 SRCS = $(addprefix $(DIR_SRCS)/,$(C_FILES))
 OBJS = $(addprefix $(DIR_OBJS)/,$(O_FILES))
 INCS = $(addprefix $(DIR_INCS)/,$(INCLUDES))
+LIBFT := $(DIR_LIBFT)/libft.a
 
 
 C_FILES = get_next_line.c tools.c
 
 INCLUDES := get_next_line.h
 
-all: $(LIBRARY) 
+all: $(LIBRARY)
 
-$(LIBRARY): $(OBJS)
+$(LIBRARY): $(OBJS) $(LIBFT)
 	@echo creating library	
 	$(AT)-ar -rcs $(LIBRARY) $(OBJS) $(INCS)
 	$(AT)-ranlib $(LIBRARY)
@@ -37,6 +39,9 @@ $(OBJS): $(SRCS) $(INCS) Makefile | $(DIR_OBJS)
 
 $(DIR_OBJS):
 	$(AT)-mkdir -p $@ 
+
+$(LIBFT):
+	$(MAKE) -C $(DIR_LIBFT)
 	
 clean:
 	@echo Removing object files

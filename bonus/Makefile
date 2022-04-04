@@ -1,47 +1,68 @@
 NAME := pipex_bonus
+AT	 = @
 
 CC = gcc
 C_FLAGS = -g -Wall -Werror -Wextra
 
-DIR_SRCS := srcs
-DIR_OBJS := objs
+DIR_SRCS_BONUS = srcs
+DIR_OBJS_BONUS = objs
 DIR_INCS := ../includes
 DIR_LIBFT := ../libft
 DIR_GNL	:= ../gnl
 
-C_FILES := child_bonus.c error_bonus.c here_doc.c pipex_bonus.c tools.c
+C_FILES_BONUS := child_bonus.c error_bonus.c here_doc.c pipex_bonus.c tools.c
 
-O_FILES := $(C_FILES:.c=.o)
-H_FILE := pipex_bonus.h
+O_FILES_BONUS := $(C_FILES_BONUS:.c=.o)
+H_FILE_BONUS := pipex_bonus.h
 LIBFT := $(DIR_LIBFT)/libft.a
 GNL	:= $(DIR_GNL)/gnl.a
 
-SRCS = $(addprefix $(DIR_SRCS)/,$(C_FILES))
-OBJS = $(addprefix $(DIR_OBJS)/,$(O_FILES))
-INC = $(addprefix $(DIR_INCS)/,$(H_FILE))
+SRCS_BONUS = $(addprefix $(DIR_SRCS_BONUS)/,$(C_FILES_BONUS))
+OBJS_BONUS = $(addprefix $(DIR_OBJS_BONUS)/,$(O_FILES_BONUS))
+FILE_INCS_BONUS = $(addprefix $(DIR_INCS)/,$(H_FILE))
 
+# ─── COLORS ────────────────────────────────────────────────────────
+	
+ERASE	=	\033[2K\r
+GREY	=	\033[30m
+RED		=	\033[31m
+GREEN	=	\033[32m
+YELLOW	=	\033[33m
+BLUE	=	\033[34m
+PINK	=	\033[35m
+CYAN	=	\033[36m
+WHITE	=	\033[37m
+BOLD	=	\033[1m
+UNDER	=	\033[4m
+SUR		=	\033[7m
+END		=	\033[0m
+
+# ─── RULES ──────────────────────────────────────────────────────────
 all : $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(GNL)
-	$(CC) $(C_FLAGS) $^ -o $@ 
+$(NAME): $(OBJS_BONUS) $(LIBFT) $(GNL)
+	$(AT) $(CC) $(C_FLAGS) $^ -o ../$@ 
+	@printf "$(ERASE)$(ERASE)$(BLUE)> Creating:$(BOLD)$(CYAN) $@ $(END)\n"
 
-$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c $(INC) Makefile | $(DIR_OBJS)
-	$(CC) $(C_FLAGS) -I$(DIR_INCS) -c $<  -o $@
+$(DIR_OBJS_BONUS)/%.o: $(DIR_SRCS_BONUS)/%.c $(INC) Makefile | $(DIR_OBJS_BONUS)
+	$(AT) $(CC) $(C_FLAGS) -I$(DIR_INCS) -c $<  -o $@
+	@printf "$(ERASE)$(ERASE)$(BLUE)> Creating:$(RED) $@ $(END)\n"
 
 $(LIBFT):
-	$(MAKE) -C $(DIR_LIBFT) 
-$(GNL):
-	$(MAKE) -C $(DIR_GNL)
+	$(AT) $(MAKE) -C $(DIR_LIBFT)
 
-$(DIR_OBJS):
-	mkdir -p $@
+$(GNL):
+	$(AT) $(MAKE) -C $(DIR_GNL)
+
+$(DIR_OBJS_BONUS):
+	$(AT) mkdir -p $@
 
 clean:
-	rm -rf $(DIR_OBJS)
+	$(AT) rm -rf $(DIR_OBJS_BONUS)
 
 fclean: clean
-	rm -rf $(NAME)
+	$(AT) rm -rf ../$(NAME)
 
-re: clean fclean all
+re: clean fclean all 
 
 .PHONY: all clean fclean re

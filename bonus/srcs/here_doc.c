@@ -23,7 +23,7 @@ void	ft_here_doc(char *arg, t_vars *vars)
 	char	*buf;
 
 	buf = NULL;
-	file = open(".tmp_here_doc", O_CREAT |O_RDWR | O_TRUNC, 00666);
+	file = open(".tmp_here_doc", O_CREAT | O_RDWR | O_TRUNC, 00666);
 	if (file < 0)
 		ft_msg_error("Error creating here_doc\n");
 	while (1)
@@ -32,7 +32,7 @@ void	ft_here_doc(char *arg, t_vars *vars)
 		get_next_line(0, &buf);
 		if (!ft_strncmp(buf, arg, ft_strlen(buf)))
 			break ;
-		write(file, buf, ft_strlen(buf)+1);
+		write(file, buf, ft_strlen(buf) + 1);
 		free(buf);
 	}
 	free(buf);

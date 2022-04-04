@@ -87,7 +87,7 @@ int	ft_fetch_next_l(int fd, char **new_str, t_buffer *t_buf)
 	return (GNL_NO_NEW_LINE);
 }
 
-int get_next_line(int fd, char **new_str)
+int	get_next_line(int fd, char **new_str)
 {
 	int				result;
 	static t_buffer	t_buf[FD_SETSIZE];

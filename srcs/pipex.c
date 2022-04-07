@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 08:03:13 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/04/07 13:58:59 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:53:39 by jvalenci         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	ft_pipex(t_var *vars, char *envp[])
 	close(vars->end[1]);
 	waitpid(child_one, &status, 0);
 	waitpid(child_two, &status, 0);
-
 }
 
 int	main(int argc, char *argv[], char *envp[])

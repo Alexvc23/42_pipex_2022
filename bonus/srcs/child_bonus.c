@@ -21,7 +21,7 @@ char	*ft_get_command(char **paths, char *cmd)
 
 	i = -1;
 
-	if (access(new_cmd, 0) == 0)
+	if (access(cmd, 0) == 0)
 		return (cmd);
 	while (paths[++i])
 	{
@@ -58,11 +58,10 @@ void	ft_child_bonus(t_vars *p, char **argv)
 		p->cmd = ft_get_command(p->paths, p->cmd_args[0]);
 		if (!p->cmd)
 		{
+			write(2, "Error Executing cmd: ", 21);
+			write(2, p->cmd_args[0], ft_strlen(p->cmd_args[0]));
+			write(2, "\n", 1);
 			ft_free_pipex(p);
-			perror("Error executing cmd: ");
-			write(2, p->cmd, ft_strlen(p->cmd));
-			perror("\n");
-			exit(-1);
 		}
 		execv(p->cmd, p->cmd_args);
 	}

@@ -80,7 +80,7 @@ gnl:
 libft:
 	$(AT) $(MAKE) -C $(DIR_LIBFT)
 
-bonus: 
+bonus: gnl libft 
 	$(MAKE) -C $(DIR_BONUS) 
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:54:51 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/04/04 14:20:51 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:08:03 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ int	get_next_line(int fd, char **new_str)
 		result = ft_fetch_next_l(fd, new_str, &t_buf[fd]);
 	if (result == GNL_EOF || result == GNL_ERROR)
 		return (ft_free_gnl(&t_buf[fd].data));
+	ft_free_gnl(&t_buf[fd].data);
 	return (0);
 }

@@ -40,7 +40,7 @@ char	*ft_new_word(char *s, char charset, int index, char **arr)
 	new_str = malloc((len + 1) * sizeof(char));
 	if (!new_str)
 	{
-		ft_free((void**)arr);
+		ft_free((void **)arr);
 		return (NULL);
 	}
 	i = index;
@@ -76,72 +76,72 @@ char	**ft_split(char const *s, char c)
 	return (new_str);
 }
 /* 
-int main()
-{
-char **test;
-int i = 0;
+   int main()
+   {
+   char **test;
+   int i = 0;
 
-test = ft_split("tengo la camisa negra", ' ');
-for (i = 0; i < ft_count_strings("tengo la camisa negra", ' ', 0); i++)
-printf(WHITE("%s\n"), test[i]);
-i = 0;
-while (test[i])
-free(test[i++]);
-free(test);
-test = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-Sed non risus. Suspendisse", ' ');
-for (i = 0; i < ft_count_strings("lorem ipsum dolor sit amet, consectetur \
-adipiscing elit. Sed non risus. Suspendisse", ' ', 0); i++)
-printf(WHITE("%s\n"), test[i]);
+   test = ft_split("tengo la camisa negra", ' ');
+   for (i = 0; i < ft_count_strings("tengo la camisa negra", ' ', 0); i++)
+   printf(WHITE("%s\n"), test[i]);
+   i = 0;
+   while (test[i])
+   free(test[i++]);
+   free(test);
+   test = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+   Sed non risus. Suspendisse", ' ');
+   for (i = 0; i < ft_count_strings("lorem ipsum dolor sit amet, consectetur \
+   adipiscing elit. Sed non risus. Suspendisse", ' ', 0); i++)
+   printf(WHITE("%s\n"), test[i]);
 
-test = ft_split("      split       this for   me  !       ", ' ');
-char **expected = ((char *[6]){"split", "this", "for", "me", "!", NULL});
-printf(RED("split result: "));
-for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
-' ', 0); i++)
-printf(WHITE("%s "), test[i]);
-printf("\n");
-printf(RED("expected result: "));
-for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
-' ', 0); i++)
-printf(WHITE("%s "), expected[i]);
-printf("\n");
-while (test[i])
-free(test[i++]);
-free(test);
+   test = ft_split("      split       this for   me  !       ", ' ');
+   char **expected = ((char *[6]){"split", "this", "for", "me", "!", NULL});
+   printf(RED("split result: "));
+   for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
+   ' ', 0); i++)
+   printf(WHITE("%s "), test[i]);
+   printf("\n");
+   printf(RED("expected result: "));
+   for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
+   ' ', 0); i++)
+   printf(WHITE("%s "), expected[i]);
+   printf("\n");
+   while (test[i])
+   free(test[i++]);
+   free(test);
 
-test = ft_split("split  ||this|for|me|||||!|", '|');
-char **expected1 = (char *[6]){"split  ", "this", "for", "me", "!", NULL};
-printf(RED("split result: "));
-for (i = 0; i < ft_count_strings("split  ||this|for|me|||||!|", '|', 0); i++)
-printf(WHITE("%s "), test[i]);
-printf("\n");
-printf(RED("expected result: "));
-for (i = 0; i < ft_count_strings("split  ||this|for|me|||||!|", '|', 0); i++)
-printf(WHITE("%s "), expected1[i]);
-printf("\n");
-while (test[i])
-free(test[i++]);
-free(test);
+   test = ft_split("split  ||this|for|me|||||!|", '|');
+   char **expected1 = (char *[6]){"split  ", "this", "for", "me", "!", NULL};
+   printf(RED("split result: "));
+   for (i = 0; i < ft_count_strings("split  ||this|for|me|||||!|", '|', 0); i++)
+   printf(WHITE("%s "), test[i]);
+   printf("\n");
+   printf(RED("expected result: "));
+   for (i = 0; i < ft_count_strings("split  ||this|for|me|||||!|", '|', 0); i++)
+   printf(WHITE("%s "), expected1[i]);
+   printf("\n");
+   while (test[i])
+   free(test[i++]);
+   free(test);
 
-char **expected2 = (char *[6]){"split", "this", "for", "me", "!", NULL};
-test = ft_split("      split       this for   me  !       ", ' ');
-printf(RED("split result: "));
-for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
-' ', 0); i++)
-printf(WHITE("%s "), test[i]);
-printf("\n");
-printf(RED("expected result: "));
-for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
-' ', 0); i++)
-printf(WHITE("%s "), expected2[i]);
-printf("\n");
-while (test[i])
-free(test[i++]);
-free(test);
+   char **expected2 = (char *[6]){"split", "this", "for", "me", "!", NULL};
+   test = ft_split("      split       this for   me  !       ", ' ');
+   printf(RED("split result: "));
+   for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
+   ' ', 0); i++)
+   printf(WHITE("%s "), test[i]);
+   printf("\n");
+   printf(RED("expected result: "));
+   for (i = 0; i < ft_count_strings("      split       this for   me  !       ",\
+   ' ', 0); i++)
+   printf(WHITE("%s "), expected2[i]);
+   printf("\n");
+   while (test[i])
+   free(test[i++]);
+   free(test);
 
-char **expected3 = ft_split("\0aa\0bbb", '\0');
-for (i = 0; i < ft_count_strings("\0aa\0bbb", '\0', 0); i++)
-printf(WHITE("%s "), expected3[i]);
-printf("\n");
-} */
+   char **expected3 = ft_split("\0aa\0bbb", '\0');
+   for (i = 0; i < ft_count_strings("\0aa\0bbb", '\0', 0); i++)
+   printf(WHITE("%s "), expected3[i]);
+   printf("\n");
+   } */

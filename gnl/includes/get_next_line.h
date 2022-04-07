@@ -13,7 +13,8 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-# endif  
+#  define BUFFER_SIZE 42
+# endif
 # include<sys/select.h>
 # include<sys/types.h>
 # include<sys/stat.h>
@@ -24,7 +25,6 @@
 # define GNL_NEW_LINE 1
 # define GNL_NO_NEW_LINE 2
 # define GNL_EOF 3
-# define BUFFER_SIZE 42
 
 /* STRUCTURES */
 

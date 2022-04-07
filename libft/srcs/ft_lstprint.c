@@ -15,22 +15,22 @@
 void	ft_lstprint(t_list **header)
 {
 	t_list	*ptr;
-   int      i;
+	int		i;
 
 	ptr = *header;
 	if (!*header)
 		return ;
-   while (ptr)
-   {
-      i = 0;
-      while (ptr->content[i])
-         ft_putstr_fd(ptr->content[i++], 1);
-      if (ptr->next)
-         ft_putchar_fd(' ', 1);
-      ft_putnbr_fd(*(int*)ptr->index, 1);
-      ptr = ptr->next;
-   }
-   ft_putstr_fd("\n", 1);
+	while (ptr)
+	{
+		i = 0;
+		while (ptr->content[i])
+			ft_putstr_fd(ptr->content[i++], 1);
+		if (ptr->next)
+			ft_putchar_fd(' ', 1);
+		ft_putnbr_fd(*(int *)ptr->index, 1);
+		ptr = ptr->next;
+	}
+	ft_putstr_fd("\n", 1);
 }
 /* int main(int args, char *argv[])
    {
@@ -53,4 +53,4 @@ void	ft_lstprint(t_list **header)
    ft_lstprint(test);
    return (0);
    }
-   */
+ */

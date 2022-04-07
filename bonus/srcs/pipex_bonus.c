@@ -6,7 +6,7 @@
 /*   By: jvalenci <jvalenci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:05:23 by jvalenci          #+#    #+#             */
-/*   Updated: 2022/04/01 18:51:20 by jvalenci         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:56:05 by jvalenci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char *argv[], char *envp[])
 	if (!pipex.end)
 		ft_close_files(&pipex);
 	pipex.path = ft_find_path(envp);
+	if (!pipex.path)
+		ft_msg_error("Command not found\n");
 	pipex.paths = ft_split(pipex.path, ':');
 	if (!pipex.paths)
 		ft_free_pipex(&pipex);

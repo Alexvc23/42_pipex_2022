@@ -1,4 +1,4 @@
-NAME := pipex
+NAME := pipex_bonus
 AT	 = @
 
 CC = gcc
